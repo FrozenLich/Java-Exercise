@@ -8,9 +8,11 @@ public class WordsCount {
         int length = 0;
 
         String ex = a.nextLine().strip();
-        ex = ex.replaceAll("\\s+", "");
-        length = ex.length();
+        String[] wordsList = ex.split(" ");
 
-        System.out.println("The words count is " + length);
+        if(ex.length() == 0)
+            System.out.println("The words count is 0");
+        else
+            System.out.println("The words count is " + wordsList.length);
     }
 }
