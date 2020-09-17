@@ -7,13 +7,26 @@ public class CountAndReplace {
 
         int SEndingcount = 0;
         int YEndingcount = 0;
-        String ex = a.nextLine();
+        String ex = a.nextLine().replaceAll("\\s+", " ").strip();
         boolean firstS = true;
         boolean firstY = true;
         int firstSpos = -1;
         int firstYpos = -1;
 
         String[] wordsList = ex.split(" ");
+
+        String lastWord = wordsList[wordsList.length-1];
+        int splitPoint = lastWord.length() - 1;
+        for(int z = lastWord.length() - 1; z >= 0; z--) {
+            if (Character.isAlphabetic(lastWord.charAt(z)) || Character.isDigit(lastWord.charAt(z))) {
+                splitPoint = z;
+                break;
+            }
+        }
+
+        wordsList[wordsList.length - 1] = lastWord.substring(0, splitPoint);
+        String specChars = lastWord.substring(splitPoint);
+
         if (ex.length() != 0) {
             for (int i = 0; i < wordsList.length; i++) {
                 if (wordsList[i].charAt(wordsList[i].length() - 1) == 's') {
@@ -58,7 +71,7 @@ public class CountAndReplace {
         System.out.println("The count of words ending with 's' is " + SEndingcount);
         System.out.println("The count of words ending with 'y' is " + YEndingcount);
         System.out.println("The String after replacement is as follows:");
-        System.out.println(sb.toString().strip());
+        System.out.println(sb.toString().strip() + specChars);
 
 
     }
