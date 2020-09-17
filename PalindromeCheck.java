@@ -8,7 +8,7 @@ public class PalindromeCheck {
 
         boolean check = true;
         String ex = b.nextLine().toLowerCase();
-        ex = ex.replaceAll("\\s+", "");
+        ex = ex.replaceAll("[^a-zA-Z0-9]+", "");
         int first = 0;
         int last = ex.length() - 1;
         while(first < last) {
